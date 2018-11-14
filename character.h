@@ -25,6 +25,7 @@ class Character
     void setSpeed(uint8_t s);
     void incSpeed();
     void decSpeed();
+    void setMoveDiffBySpeed();
     void setOrient(uint8_t o);
     void move(uint8_t d, int16_t dist);
     int update(); // returns millisecs to wait
@@ -32,9 +33,9 @@ class Character
     Adafruit_ST7735 *tft;
     int16_t pos_x, pos_y, width, height, target_x, target_y;
     uint8_t status;
-    uint8_t speed; // speed (1-) drawing interval (5 is slow, 1 is fast)
-    uint8_t pattern;
-    uint8_t frame;
+    uint8_t speed;   // speed (1-) drawing interval (5 is slow, 1 is fast)
+    uint8_t pattern; // character pattern (0-4)
+    uint8_t frame;   
     uint8_t orient;
     uint8_t direction;
     uint8_t move_diff;

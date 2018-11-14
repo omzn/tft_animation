@@ -35,17 +35,31 @@ void Character::stop(uint8_t o)
     status = STATUS_STOP;
 }
 
+void Character::setMoveDiffBySpeed() {
+    if (speed == 1) {
+        move_diff = 8;
+    } else if (speed == 2) {
+        move_diff = 4;
+    } else if (speed == 3) {
+        move_diff = 2;
+    } else {
+        move_diff = 1;
+    }
+}
+
 void Character::setSpeed(uint8_t s)
 {
     if (s > 0)
     {
         speed = s;
     }
+    setMoveDiffBySpeed();
 }
 
 void Character::incSpeed()
 {
     speed++;
+    setMoveDiffBySpeed();
 }
 
 void Character::decSpeed()
@@ -54,6 +68,7 @@ void Character::decSpeed()
     {
         speed--;
     }
+    setMoveDiffBySpeed();
 }
 
 void Character::setOrient(uint8_t o)
@@ -106,37 +121,37 @@ int Character::update()
         {
             if (direction == MOVE_UP)
             {
-                tft->drawRect(pos_x,pos_y+32-move_diff,32,move_diff,ST7735_BLACK); 
+                tft->fillRect(pos_x,pos_y+32-move_diff,32,move_diff,ST7735_BLACK); 
                 pos_y -= move_diff;
                 orient = ORIENT_BACK;
             }
             else if (direction == MOVE_DOWN)
             {
-                tft->drawRect(pos_x,pos_y,32,move_diff,ST7735_BLACK); 
+                tft->fillRect(pos_x,pos_y,32,move_diff,ST7735_BLACK); 
                 pos_y += move_diff;
                 orient = ORIENT_FRONT;
             }
             else if (direction == MOVE_LEFT)
             {
-                tft->drawRect(pos_x+32-move_diff,pos_y,move_diff,32,ST7735_BLACK); 
+                tft->fillRect(pos_x+32-move_diff,pos_y,move_diff,32,ST7735_BLACK); 
                 pos_x -= move_diff;
                 orient = ORIENT_LEFT;
             }
             else if (direction == MOVE_RIGHT)
             {
-                tft->drawRect(pos_x,pos_y,move_diff,32,ST7735_BLACK); 
+                tft->fillRect(pos_x,pos_y,move_diff,32,ST7735_BLACK); 
                 pos_x += move_diff;
                 orient = ORIENT_RIGHT;
             }
             else if (direction == MOVE_LEFTBACK)
             {
-                tft->drawRect(pos_x+32-move_diff,pos_y,move_diff,32,ST7735_BLACK); 
+                tft->fillRect(pos_x+32-move_diff,pos_y,move_diff,32,ST7735_BLACK); 
                 pos_x -= move_diff;
                 orient = ORIENT_RIGHT;
             }
             else if (direction == MOVE_RIGHTBACK)
             {
-                tft->drawRect(pos_x,pos_y,move_diff,32,ST7735_BLACK); 
+                tft->fillRect(pos_x,pos_y,move_diff,32,ST7735_BLACK); 
                 pos_x += move_diff;
                 orient = ORIENT_LEFT;
             }
