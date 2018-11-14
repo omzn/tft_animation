@@ -55,7 +55,7 @@ void setup(void)
 
   tft.setCursor(0, 0);
   tft.setTextColor(fixColor(ST7735_WHITE));
-  tft.println("Aquatan podemeter");
+  tft.println("Aquatan animation SAMD21");
 
   delay(1000);
   aquatan.start(80-16,32,ORIENT_FRONT);
@@ -80,13 +80,17 @@ void loop()
     } else if (op == '+') {
       aquatan.decSpeed();
     } else if (op == 'U') {
-      aquatan.move(MOVE_UP);
+      aquatan.move(MOVE_UP,32);
     } else if (op == 'D') {
-      aquatan.move(MOVE_DOWN);
+      aquatan.move(MOVE_DOWN,32);
     } else if (op == 'L') {
-      aquatan.move(MOVE_LEFT);
+      aquatan.move(MOVE_LEFT,32);
     } else if (op == 'R') {
-      aquatan.move(MOVE_RIGHT);
+      aquatan.move(MOVE_RIGHT,32);
+    } else if (op == 'M') {
+      aquatan.move(MOVE_LEFTBACK,32);
+    } else if (op == 'N') {
+      aquatan.move(MOVE_RIGHTBACK,32);
     }
   }
   delay(aquatan.update());

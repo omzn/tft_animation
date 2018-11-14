@@ -13,7 +13,7 @@
 
 enum {ORIENT_FRONT = 0, ORIENT_LEFT, ORIENT_RIGHT, ORIENT_BACK};
 enum {STATUS_WAIT = 0, STATUS_STOP, STATUS_MOVE};
-enum {MOVE_UP = 0, MOVE_LEFT, MOVE_RIGHT, MOVE_DOWN};
+enum {MOVE_UP = 0, MOVE_LEFT, MOVE_RIGHT, MOVE_DOWN, MOVE_LEFTBACK, MOVE_RIGHTBACK};
 
 class Character
 {
@@ -26,7 +26,7 @@ class Character
     void incSpeed();
     void decSpeed();
     void setOrient(uint8_t o);
-    void move(uint8_t d);
+    void move(uint8_t d, int16_t dist);
     int update(); // returns millisecs to wait
   protected:
     Adafruit_ST7735 *tft;

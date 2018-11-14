@@ -61,28 +61,38 @@ void Character::setOrient(uint8_t o)
     orient = o;
 }
 
-void Character::move(uint8_t d)
+void Character::move(uint8_t d, int16_t distance)
 {
     status = STATUS_MOVE;
     direction = d;
     if (direction == MOVE_UP) 
     {
         target_x = pos_x;
-        target_y = pos_y - 32;
+        target_y = pos_y - distance;
     }
     else if (direction == MOVE_DOWN) 
     {
         target_x = pos_x;
-        target_y = pos_y + 32;
+        target_y = pos_y + distance;
     }
     else if (direction == MOVE_LEFT) 
     {
-        target_x = pos_x - 32;
+        target_x = pos_x - distance;
         target_y = pos_y;
     }
     else if (direction == MOVE_RIGHT) 
     {
-        target_x = pos_x + 32;
+        target_x = pos_x + distance;
+        target_y = pos_y;
+    }
+    else if (direction == MOVE_LEFTBACK) 
+    {
+        target_x = pos_x - distance;
+        target_y = pos_y;
+    }
+    else if (direction == MOVE_RIGHTBACK) 
+    {
+        target_x = pos_x + distance;
         target_y = pos_y;
     }
 }
@@ -117,6 +127,18 @@ int Character::update()
                 tft->drawRect(pos_x,pos_y,move_diff,32,ST7735_BLACK); 
                 pos_x += move_diff;
                 orient = ORIENT_RIGHT;
+            }
+            else if (direction == MOVE_LEFTBACK)
+            {
+                tft->drawRect(pos_x+32-move_diff,pos_y,move_diff,32,ST7735_BLACK); 
+                pos_x -= move_diff;
+                orient = ORIENT_RIGHT;
+            }
+            else if (direction == MOVE_RIGHTBACK)
+            {
+                tft->drawRect(pos_x,pos_y,move_diff,32,ST7735_BLACK); 
+                pos_x += move_diff;
+                orient = ORIENT_LEFT;
             }
             e = drawBitmap16(aqua_bmp[orient][pattern], pos_x, pos_y, width, height);
             if (frame == 0)
