@@ -1,0 +1,5 @@
+{
+    "board": "SparkFun:samd:samd21_mini",
+    "sketch": "samd21_bitmap.ino",
+    "port": "/dev/cu.usbmodem14101"
+}
