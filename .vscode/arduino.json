@@ -1,5 +1,5 @@
 {
     "board": "SparkFun:samd:samd21_mini",
-    "sketch": "samd21_bitmap.ino",
+    "sketch": "tft_animation.ino",
     "port": "/dev/cu.usbmodem14101"
 }
