@@ -5,7 +5,8 @@
             "includePath": [
                 "/Users/omzn/Library/Arduino15/packages/SparkFun/hardware/samd/1.5.2/**",
                         "~/Arduino/libraries/**",
-                        "~/Library/Arduino15/**"
+                        "~/Library/Arduino15/**",
+                        "./**"
             ],
             "forcedInclude": [
                 "/Users/omzn/Library/Arduino15/packages/SparkFun/hardware/samd/1.5.2/cores/arduino/Arduino.h"

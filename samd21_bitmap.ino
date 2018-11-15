@@ -1,5 +1,5 @@
+#include "character.h"
 #include <SPI.h>
-#include "Character.h"
 
 #include "util.h"
 
@@ -12,8 +12,7 @@
 Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
 Character aquatan = Character(&tft);
 
-void setup(void)
-{
+void setup(void) {
   Serial.begin(115200);
 
   tft.initR(INITR_MINI160x80);
@@ -25,13 +24,11 @@ void setup(void)
   tft.println("Aquatan animation SAMD21");
 
   delay(1000);
-  aquatan.start(80-16,32,ORIENT_FRONT);
+  aquatan.start(64, 32, ORIENT_FRONT);
 }
 
-void loop()
-{
-  if (Serial.available() > 0)
-  {
+void loop() {
+  if (Serial.available() > 0) {
     // 受信したデータの1バイトを読み取る
     byte op = Serial.read();
     if (op == 'f') {
@@ -47,17 +44,17 @@ void loop()
     } else if (op == '+') {
       aquatan.decSpeed();
     } else if (op == 'U') {
-      aquatan.move(MOVE_UP,32);
+      aquatan.move(MOVE_UP, 16);
     } else if (op == 'D') {
-      aquatan.move(MOVE_DOWN,32);
+      aquatan.move(MOVE_DOWN, 16);
     } else if (op == 'L') {
-      aquatan.move(MOVE_LEFT,32);
+      aquatan.move(MOVE_LEFT, 32);
     } else if (op == 'R') {
-      aquatan.move(MOVE_RIGHT,32);
+      aquatan.move(MOVE_RIGHT, 32);
     } else if (op == 'M') {
-      aquatan.move(MOVE_LEFTBACK,32);
+      aquatan.move(MOVE_LEFTBACK, 32);
     } else if (op == 'N') {
-      aquatan.move(MOVE_RIGHTBACK,32);
+      aquatan.move(MOVE_RIGHTBACK, 32);
     }
   }
   delay(aquatan.update());
